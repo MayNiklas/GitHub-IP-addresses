@@ -21,13 +21,19 @@
 
           github_ip_addresses = with pkgs.python39Packages;
             pkgs.python39Packages.buildPythonPackage rec {
-
               pname = "github_ip_addresses";
               version = "1.0.0";
 
               propagatedBuildInputs = [ requests ];
-
+              doCheck = false;
               src = self;
+
+              meta = with pkgs.lib; {
+                description = "Generate nginx allow lists from GitHub API";
+                homepage = "https://github.com/MayNiklas/GitHub-IP-addresses/";
+                platforms = platforms.unix;
+                maintainers = with maintainers; [ mayniklas ];
+              };
             };
 
         };
